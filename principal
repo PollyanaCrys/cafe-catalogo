@@ -1,0 +1,102 @@
+import 'package:flutter/material.dart';
+
+class Catalogo extends StatefulWidget {
+  const Catalogo({Key? key}) : super(key: key);
+
+  @override
+  State<Catalogo> createState() => _CatalogoState();
+}
+
+class _CatalogoState extends State<Catalogo> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0XFFB7794B),
+        shadowColor: Colors.transparent,
+        toolbarHeight: 25,
+      ),
+      backgroundColor: const Color(0XFFF8EFE9),
+      body: ListView(
+        children: [
+          buildContent("images/cafe.png", "Café", "Tradicional", "150", "8,00",
+              "Café extra-forte, açucar...", context),
+          buildContent("images/capuccino.png", "Capuccino", "", "250", "15,00",
+              "Leite, café, açucar...", context),
+          buildContent("images/chocolate_quente.png", "Chocolate", "Quente",
+              "200", "16,00", "Leite, chocolate em pó...", context),
+          buildContent("images/cafe.png", "Café", "Tradicional", "150", "8,00",
+              "Café extra-forte, açucar...", context),
+          buildContent("images/capuccino.png", "Capuccino", "", "250", "15,00",
+              "Leite, café, açucar...", context),
+          buildContent("images/chocolate_quente.png", "Chocolate", "Quente",
+              "200", "16,00", "Leite, chocolate em pó...", context),
+        ],
+      ),
+    );
+  }
+}
+
+buildDivider(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 8),
+    child: Container(
+      height: 25,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(color: Color(0XFFB7794B)),
+    ),
+  );
+}
+
+buildContent(String foto, String nome, String aux, String volume, String preco,
+    String ingredientes, BuildContext context) {
+  return Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Column(
+            children: [
+              Container(
+                width: 200,
+                height: 170,
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: DecorationImage(image: AssetImage(foto))),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Text(
+                nome,
+                style: const TextStyle(fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                aux,
+                style: const TextStyle(fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child:
+                    Text("${volume}ml", style: const TextStyle(fontSize: 18)),
+              ),
+              Text("R\$$preco", style: const TextStyle(fontSize: 24)),
+            ],
+          ),
+        ],
+      ),
+      Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: Text(ingredientes,
+              style:
+                  const TextStyle(fontSize: 22, fontWeight: FontWeight.w300)),
+        ),
+      ]),
+      buildDivider(context)
+    ],
+  );
+}
